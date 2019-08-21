@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phonecard.dao.OneSortMapper" >
+  <resultMap id="BaseResultMap" type="com.phonecard.bean.OneSort" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="one_sort_img" property="oneSortImg" jdbcType="VARCHAR" />
+    <result column="one_sort_name" property="oneSortName" jdbcType="VARCHAR" />
+    <result column="is_index" property="isIndex" jdbcType="SMALLINT" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, one_sort_img, one_sort_name, is_index, sort, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from one_sort
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from one_sort
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.phonecard.bean.OneSort" >
+    insert into one_sort (id, one_sort_img, one_sort_name, 
+      is_index, sort, is_delete
+      )
+    values (#{id,jdbcType=INTEGER}, #{oneSortImg,jdbcType=VARCHAR}, #{oneSortName,jdbcType=VARCHAR}, 
+      #{isIndex,jdbcType=SMALLINT}, #{sort,jdbcType=INTEGER}, #{isDelete,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.phonecard.bean.OneSort" >
+    insert into one_sort
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="oneSortImg != null" >
+        one_sort_img,
+      </if>
+      <if test="oneSortName != null" >
+        one_sort_name,
+      </if>
+      <if test="isIndex != null" >
+        is_index,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="oneSortImg != null" >
+        #{oneSortImg,jdbcType=VARCHAR},
+      </if>
+      <if test="oneSortName != null" >
+        #{oneSortName,jdbcType=VARCHAR},
+      </if>
+      <if test="isIndex != null" >
+        #{isIndex,jdbcType=SMALLINT},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phonecard.bean.OneSort" >
+    update one_sort
+    <set >
+      <if test="oneSortImg != null" >
+        one_sort_img = #{oneSortImg,jdbcType=VARCHAR},
+      </if>
+      <if test="oneSortName != null" >
+        one_sort_name = #{oneSortName,jdbcType=VARCHAR},
+      </if>
+      <if test="isIndex != null" >
+        is_index = #{isIndex,jdbcType=SMALLINT},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phonecard.bean.OneSort" >
+    update one_sort
+    set one_sort_img = #{oneSortImg,jdbcType=VARCHAR},
+      one_sort_name = #{oneSortName,jdbcType=VARCHAR},
+      is_index = #{isIndex,jdbcType=SMALLINT},
+      sort = #{sort,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

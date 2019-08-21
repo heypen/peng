@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phonecard.dao.CouponBindMapper" >
+  <resultMap id="BaseResultMap" type="com.phonecard.bean.CouponBind" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="coupon_uuid" property="couponUuid" jdbcType="VARCHAR" />
+    <result column="coupon_type" property="couponType" jdbcType="SMALLINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="use_time" property="useTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, open_id, coupon_uuid, coupon_type, create_time, use_time, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_bind
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from coupon_bind
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.phonecard.bean.CouponBind" >
+    insert into coupon_bind (id, open_id, coupon_uuid, 
+      coupon_type, create_time, use_time, 
+      is_delete)
+    values (#{id,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{couponUuid,jdbcType=VARCHAR}, 
+      #{couponType,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, #{useTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.phonecard.bean.CouponBind" >
+    insert into coupon_bind
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="couponUuid != null" >
+        coupon_uuid,
+      </if>
+      <if test="couponType != null" >
+        coupon_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="useTime != null" >
+        use_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="couponUuid != null" >
+        #{couponUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="couponType != null" >
+        #{couponType,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useTime != null" >
+        #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phonecard.bean.CouponBind" >
+    update coupon_bind
+    <set >
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="couponUuid != null" >
+        coupon_uuid = #{couponUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="couponType != null" >
+        coupon_type = #{couponType,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useTime != null" >
+        use_time = #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phonecard.bean.CouponBind" >
+    update coupon_bind
+    set open_id = #{openId,jdbcType=VARCHAR},
+      coupon_uuid = #{couponUuid,jdbcType=VARCHAR},
+      coupon_type = #{couponType,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      use_time = #{useTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

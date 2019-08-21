@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phonecard.dao.ProductOrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.phonecard.bean.ProductOrderDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="product_order_uuid" property="productOrderUuid" jdbcType="VARCHAR" />
+    <result column="one_sort_id" property="oneSortId" jdbcType="INTEGER" />
+    <result column="goods_uuid" property="goodsUuid" jdbcType="VARCHAR" />
+    <result column="is_one" property="isOne" jdbcType="INTEGER" />
+    <result column="properties" property="properties" jdbcType="VARCHAR" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DOUBLE" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="deposit" property="deposit" jdbcType="DOUBLE" />
+    <result column="commission" property="commission" jdbcType="DOUBLE" />
+    <result column="thumb" property="thumb" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="name_self" property="nameSelf" jdbcType="VARCHAR" />
+    <result column="phone_self" property="phoneSelf" jdbcType="CHAR" />
+    <result column="distribution_type" property="distributionType" jdbcType="SMALLINT" />
+    <result column="is_comment" property="isComment" jdbcType="SMALLINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uuid, product_order_uuid, one_sort_id, goods_uuid, is_one, properties, sku_id, 
+    price, quantity, amount, start_time, end_time, status, deposit, commission, thumb, 
+    product_name, name_self, phone_self, distribution_type, is_comment, address
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.phonecard.bean.ProductOrderDetail" >
+    insert into product_order_detail (id, uuid, product_order_uuid, 
+      one_sort_id, goods_uuid, is_one, 
+      properties, sku_id, price, 
+      quantity, amount, start_time, 
+      end_time, status, deposit, 
+      commission, thumb, product_name, 
+      name_self, phone_self, distribution_type, 
+      is_comment, address)
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{productOrderUuid,jdbcType=VARCHAR}, 
+      #{oneSortId,jdbcType=INTEGER}, #{goodsUuid,jdbcType=VARCHAR}, #{isOne,jdbcType=INTEGER}, 
+      #{properties,jdbcType=VARCHAR}, #{skuId,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, 
+      #{quantity,jdbcType=INTEGER}, #{amount,jdbcType=DOUBLE}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{deposit,jdbcType=DOUBLE}, 
+      #{commission,jdbcType=DOUBLE}, #{thumb,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{nameSelf,jdbcType=VARCHAR}, #{phoneSelf,jdbcType=CHAR}, #{distributionType,jdbcType=SMALLINT}, 
+      #{isComment,jdbcType=SMALLINT}, #{address,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.phonecard.bean.ProductOrderDetail" >
+    insert into product_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="productOrderUuid != null" >
+        product_order_uuid,
+      </if>
+      <if test="oneSortId != null" >
+        one_sort_id,
+      </if>
+      <if test="goodsUuid != null" >
+        goods_uuid,
+      </if>
+      <if test="isOne != null" >
+        is_one,
+      </if>
+      <if test="properties != null" >
+        properties,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="deposit != null" >
+        deposit,
+      </if>
+      <if test="commission != null" >
+        commission,
+      </if>
+      <if test="thumb != null" >
+        thumb,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="nameSelf != null" >
+        name_self,
+      </if>
+      <if test="phoneSelf != null" >
+        phone_self,
+      </if>
+      <if test="distributionType != null" >
+        distribution_type,
+      </if>
+      <if test="isComment != null" >
+        is_comment,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="productOrderUuid != null" >
+        #{productOrderUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="oneSortId != null" >
+        #{oneSortId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsUuid != null" >
+        #{goodsUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="isOne != null" >
+        #{isOne,jdbcType=INTEGER},
+      </if>
+      <if test="properties != null" >
+        #{properties,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null" >
+        #{deposit,jdbcType=DOUBLE},
+      </if>
+      <if test="commission != null" >
+        #{commission,jdbcType=DOUBLE},
+      </if>
+      <if test="thumb != null" >
+        #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="nameSelf != null" >
+        #{nameSelf,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneSelf != null" >
+        #{phoneSelf,jdbcType=CHAR},
+      </if>
+      <if test="distributionType != null" >
+        #{distributionType,jdbcType=SMALLINT},
+      </if>
+      <if test="isComment != null" >
+        #{isComment,jdbcType=SMALLINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phonecard.bean.ProductOrderDetail" >
+    update product_order_detail
+    <set >
+      <if test="uuid != null" >
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="productOrderUuid != null" >
+        product_order_uuid = #{productOrderUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="oneSortId != null" >
+        one_sort_id = #{oneSortId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsUuid != null" >
+        goods_uuid = #{goodsUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="isOne != null" >
+        is_one = #{isOne,jdbcType=INTEGER},
+      </if>
+      <if test="properties != null" >
+        properties = #{properties,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null" >
+        deposit = #{deposit,jdbcType=DOUBLE},
+      </if>
+      <if test="commission != null" >
+        commission = #{commission,jdbcType=DOUBLE},
+      </if>
+      <if test="thumb != null" >
+        thumb = #{thumb,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="nameSelf != null" >
+        name_self = #{nameSelf,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneSelf != null" >
+        phone_self = #{phoneSelf,jdbcType=CHAR},
+      </if>
+      <if test="distributionType != null" >
+        distribution_type = #{distributionType,jdbcType=SMALLINT},
+      </if>
+      <if test="isComment != null" >
+        is_comment = #{isComment,jdbcType=SMALLINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phonecard.bean.ProductOrderDetail" >
+    update product_order_detail
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      product_order_uuid = #{productOrderUuid,jdbcType=VARCHAR},
+      one_sort_id = #{oneSortId,jdbcType=INTEGER},
+      goods_uuid = #{goodsUuid,jdbcType=VARCHAR},
+      is_one = #{isOne,jdbcType=INTEGER},
+      properties = #{properties,jdbcType=VARCHAR},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
+      quantity = #{quantity,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DOUBLE},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      deposit = #{deposit,jdbcType=DOUBLE},
+      commission = #{commission,jdbcType=DOUBLE},
+      thumb = #{thumb,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      name_self = #{nameSelf,jdbcType=VARCHAR},
+      phone_self = #{phoneSelf,jdbcType=CHAR},
+      distribution_type = #{distributionType,jdbcType=SMALLINT},
+      is_comment = #{isComment,jdbcType=SMALLINT},
+      address = #{address,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

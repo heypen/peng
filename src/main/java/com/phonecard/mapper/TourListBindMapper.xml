@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phonecard.dao.TourListBindMapper" >
+  <resultMap id="BaseResultMap" type="com.phonecard.bean.TourListBind" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="tour_id" property="tourId" jdbcType="INTEGER" />
+    <result column="goods_uuid" property="goodsUuid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tour_id, goods_uuid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tour_list_bind
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tour_list_bind
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.phonecard.bean.TourListBind" >
+    insert into tour_list_bind (id, tour_id, goods_uuid
+      )
+    values (#{id,jdbcType=INTEGER}, #{tourId,jdbcType=INTEGER}, #{goodsUuid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.phonecard.bean.TourListBind" >
+    insert into tour_list_bind
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tourId != null" >
+        tour_id,
+      </if>
+      <if test="goodsUuid != null" >
+        goods_uuid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tourId != null" >
+        #{tourId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsUuid != null" >
+        #{goodsUuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phonecard.bean.TourListBind" >
+    update tour_list_bind
+    <set >
+      <if test="tourId != null" >
+        tour_id = #{tourId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsUuid != null" >
+        goods_uuid = #{goodsUuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phonecard.bean.TourListBind" >
+    update tour_list_bind
+    set tour_id = #{tourId,jdbcType=INTEGER},
+      goods_uuid = #{goodsUuid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phonecard.dao.GoodsCartMapper" >
+  <resultMap id="BaseResultMap" type="com.phonecard.bean.GoodsCart" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="goods_uuid" property="goodsUuid" jdbcType="VARCHAR" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="order_price" property="orderPrice" jdbcType="DOUBLE" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DOUBLE" />
+    <result column="is_limit" property="isLimit" jdbcType="SMALLINT" />
+    <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, open_id, goods_uuid, sku_id, quantity, order_price, goods_price, is_limit, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_cart
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_cart
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.phonecard.bean.GoodsCart" >
+    insert into goods_cart (id, open_id, goods_uuid, 
+      sku_id, quantity, order_price, 
+      goods_price, is_limit, is_delete
+      )
+    values (#{id,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{goodsUuid,jdbcType=VARCHAR}, 
+      #{skuId,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER}, #{orderPrice,jdbcType=DOUBLE}, 
+      #{goodsPrice,jdbcType=DOUBLE}, #{isLimit,jdbcType=SMALLINT}, #{isDelete,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.phonecard.bean.GoodsCart" >
+    insert into goods_cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="goodsUuid != null" >
+        goods_uuid,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="orderPrice != null" >
+        order_price,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="isLimit != null" >
+        is_limit,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsUuid != null" >
+        #{goodsUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        #{orderPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isLimit != null" >
+        #{isLimit,jdbcType=SMALLINT},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phonecard.bean.GoodsCart" >
+    update goods_cart
+    <set >
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsUuid != null" >
+        goods_uuid = #{goodsUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        order_price = #{orderPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isLimit != null" >
+        is_limit = #{isLimit,jdbcType=SMALLINT},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phonecard.bean.GoodsCart" >
+    update goods_cart
+    set open_id = #{openId,jdbcType=VARCHAR},
+      goods_uuid = #{goodsUuid,jdbcType=VARCHAR},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      quantity = #{quantity,jdbcType=INTEGER},
+      order_price = #{orderPrice,jdbcType=DOUBLE},
+      goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      is_limit = #{isLimit,jdbcType=SMALLINT},
+      is_delete = #{isDelete,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

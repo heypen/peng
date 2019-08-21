@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phonecard.dao.TourListMapper" >
+  <resultMap id="BaseResultMap" type="com.phonecard.bean.TourList" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="main_title" property="mainTitle" jdbcType="VARCHAR" />
+    <result column="second_title" property="secondTitle" jdbcType="VARCHAR" />
+    <result column="tour_img" property="tourImg" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="is_show" property="isShow" jdbcType="SMALLINT" />
+    <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, main_title, second_title, tour_img, create_time, sort, is_show, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tour_list
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tour_list
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.phonecard.bean.TourList" >
+    insert into tour_list (id, main_title, second_title, 
+      tour_img, create_time, sort, 
+      is_show, is_delete)
+    values (#{id,jdbcType=INTEGER}, #{mainTitle,jdbcType=VARCHAR}, #{secondTitle,jdbcType=VARCHAR}, 
+      #{tourImg,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{sort,jdbcType=INTEGER}, 
+      #{isShow,jdbcType=SMALLINT}, #{isDelete,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.phonecard.bean.TourList" >
+    insert into tour_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mainTitle != null" >
+        main_title,
+      </if>
+      <if test="secondTitle != null" >
+        second_title,
+      </if>
+      <if test="tourImg != null" >
+        tour_img,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mainTitle != null" >
+        #{mainTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="secondTitle != null" >
+        #{secondTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="tourImg != null" >
+        #{tourImg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=SMALLINT},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phonecard.bean.TourList" >
+    update tour_list
+    <set >
+      <if test="mainTitle != null" >
+        main_title = #{mainTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="secondTitle != null" >
+        second_title = #{secondTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="tourImg != null" >
+        tour_img = #{tourImg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow,jdbcType=SMALLINT},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phonecard.bean.TourList" >
+    update tour_list
+    set main_title = #{mainTitle,jdbcType=VARCHAR},
+      second_title = #{secondTitle,jdbcType=VARCHAR},
+      tour_img = #{tourImg,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      sort = #{sort,jdbcType=INTEGER},
+      is_show = #{isShow,jdbcType=SMALLINT},
+      is_delete = #{isDelete,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

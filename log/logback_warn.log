@@ -1,0 +1,2 @@
+2019-08-20 17:01:00,552 WARN [main] o.m.s.mapper.ClassPathMapperScanner [ClassPathMapperScanner.java : 166] No MyBatis mapper was found in '[com.phonecard.dao]' package. Please check your configuration.
+2019-08-20 17:01:00,638 WARN [main] o.m.s.mapper.ClassPathMapperScanner [ClassPathMapperScanner.java : 166] No MyBatis mapper was found in '[com.phonecard]' package. Please check your configuration.

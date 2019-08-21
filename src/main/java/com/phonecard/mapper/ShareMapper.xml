@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phonecard.dao.ShareMapper" >
+  <resultMap id="BaseResultMap" type="com.phonecard.bean.Share" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="one_open_id" property="oneOpenId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="in_type" property="inType" jdbcType="SMALLINT" />
+    <result column="reserve" property="reserve" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, open_id, one_open_id, create_time, in_type, reserve, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from share
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from share
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.phonecard.bean.Share" >
+    insert into share (id, open_id, one_open_id, 
+      create_time, in_type, reserve, 
+      is_delete)
+    values (#{id,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{oneOpenId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{inType,jdbcType=SMALLINT}, #{reserve,jdbcType=VARCHAR}, 
+      #{isDelete,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.phonecard.bean.Share" >
+    insert into share
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="oneOpenId != null" >
+        one_open_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="inType != null" >
+        in_type,
+      </if>
+      <if test="reserve != null" >
+        reserve,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="oneOpenId != null" >
+        #{oneOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inType != null" >
+        #{inType,jdbcType=SMALLINT},
+      </if>
+      <if test="reserve != null" >
+        #{reserve,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phonecard.bean.Share" >
+    update share
+    <set >
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="oneOpenId != null" >
+        one_open_id = #{oneOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inType != null" >
+        in_type = #{inType,jdbcType=SMALLINT},
+      </if>
+      <if test="reserve != null" >
+        reserve = #{reserve,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phonecard.bean.Share" >
+    update share
+    set open_id = #{openId,jdbcType=VARCHAR},
+      one_open_id = #{oneOpenId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      in_type = #{inType,jdbcType=SMALLINT},
+      reserve = #{reserve,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

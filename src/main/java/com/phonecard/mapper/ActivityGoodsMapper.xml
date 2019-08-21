@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phonecard.dao.ActivityGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.phonecard.bean.ActivityGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="goods_uuid" property="goodsUuid" jdbcType="VARCHAR" />
+    <result column="sku_id" property="skuId" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="goods_price" property="goodsPrice" jdbcType="DOUBLE" />
+    <result column="is_shelf" property="isShelf" jdbcType="SMALLINT" />
+    <result column="activity_type" property="activityType" jdbcType="SMALLINT" />
+    <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uuid, goods_uuid, sku_id, amount, goods_price, is_shelf, activity_type, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from activity_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activity_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.phonecard.bean.ActivityGoods" >
+    insert into activity_goods (id, uuid, goods_uuid, 
+      sku_id, amount, goods_price, 
+      is_shelf, activity_type, is_delete
+      )
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{goodsUuid,jdbcType=VARCHAR}, 
+      #{skuId,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER}, #{goodsPrice,jdbcType=DOUBLE}, 
+      #{isShelf,jdbcType=SMALLINT}, #{activityType,jdbcType=SMALLINT}, #{isDelete,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.phonecard.bean.ActivityGoods" >
+    insert into activity_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="goodsUuid != null" >
+        goods_uuid,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="isShelf != null" >
+        is_shelf,
+      </if>
+      <if test="activityType != null" >
+        activity_type,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsUuid != null" >
+        #{goodsUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isShelf != null" >
+        #{isShelf,jdbcType=SMALLINT},
+      </if>
+      <if test="activityType != null" >
+        #{activityType,jdbcType=SMALLINT},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phonecard.bean.ActivityGoods" >
+    update activity_goods
+    <set >
+      <if test="uuid != null" >
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsUuid != null" >
+        goods_uuid = #{goodsUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isShelf != null" >
+        is_shelf = #{isShelf,jdbcType=SMALLINT},
+      </if>
+      <if test="activityType != null" >
+        activity_type = #{activityType,jdbcType=SMALLINT},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phonecard.bean.ActivityGoods" >
+    update activity_goods
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      goods_uuid = #{goodsUuid,jdbcType=VARCHAR},
+      sku_id = #{skuId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=INTEGER},
+      goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      is_shelf = #{isShelf,jdbcType=SMALLINT},
+      activity_type = #{activityType,jdbcType=SMALLINT},
+      is_delete = #{isDelete,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

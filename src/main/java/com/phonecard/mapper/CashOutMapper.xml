@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phonecard.dao.CashOutMapper" >
+  <resultMap id="BaseResultMap" type="com.phonecard.bean.CashOut" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="cash_number" property="cashNumber" jdbcType="DOUBLE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="count_time" property="countTime" jdbcType="TIMESTAMP" />
+    <result column="pay_uuid" property="payUuid" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, open_id, cash_number, create_time, count_time, pay_uuid, status, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cash_out
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cash_out
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.phonecard.bean.CashOut" >
+    insert into cash_out (id, open_id, cash_number, 
+      create_time, count_time, pay_uuid, 
+      status, is_delete)
+    values (#{id,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{cashNumber,jdbcType=DOUBLE}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{countTime,jdbcType=TIMESTAMP}, #{payUuid,jdbcType=VARCHAR}, 
+      #{status,jdbcType=SMALLINT}, #{isDelete,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.phonecard.bean.CashOut" >
+    insert into cash_out
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="cashNumber != null" >
+        cash_number,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="countTime != null" >
+        count_time,
+      </if>
+      <if test="payUuid != null" >
+        pay_uuid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="cashNumber != null" >
+        #{cashNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countTime != null" >
+        #{countTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payUuid != null" >
+        #{payUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phonecard.bean.CashOut" >
+    update cash_out
+    <set >
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="cashNumber != null" >
+        cash_number = #{cashNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countTime != null" >
+        count_time = #{countTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payUuid != null" >
+        pay_uuid = #{payUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phonecard.bean.CashOut" >
+    update cash_out
+    set open_id = #{openId,jdbcType=VARCHAR},
+      cash_number = #{cashNumber,jdbcType=DOUBLE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      count_time = #{countTime,jdbcType=TIMESTAMP},
+      pay_uuid = #{payUuid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=SMALLINT},
+      is_delete = #{isDelete,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

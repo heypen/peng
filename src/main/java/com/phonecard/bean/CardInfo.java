@@ -1,0 +1,143 @@
+package com.phonecard.bean;
+
+public class CardInfo {
+    private Integer id;
+
+    private String goodsUuid;
+
+    private Integer destination;
+
+    private String supplier;
+
+    private String selfCity;
+
+    private String startExplain;
+
+    private String costExplain;
+
+    private String productExplain;
+
+    private String reserveNotice;
+
+    private String cancellationPolicy;
+
+    private String network;
+
+    private Short hotspot;
+
+    private Short cardSize;
+
+    private Short isDelete;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getGoodsUuid() {
+        return goodsUuid;
+    }
+
+    public void setGoodsUuid(String goodsUuid) {
+        this.goodsUuid = goodsUuid == null ? null : goodsUuid.trim();
+    }
+
+    public Integer getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Integer destination) {
+        this.destination = destination;
+    }
+
+    public String getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier == null ? null : supplier.trim();
+    }
+
+    public String getSelfCity() {
+        return selfCity;
+    }
+
+    public void setSelfCity(String selfCity) {
+        this.selfCity = selfCity == null ? null : selfCity.trim();
+    }
+
+    public String getStartExplain() {
+        return startExplain;
+    }
+
+    public void setStartExplain(String startExplain) {
+        this.startExplain = startExplain == null ? null : startExplain.trim();
+    }
+
+    public String getCostExplain() {
+        return costExplain;
+    }
+
+    public void setCostExplain(String costExplain) {
+        this.costExplain = costExplain == null ? null : costExplain.trim();
+    }
+
+    public String getProductExplain() {
+        return productExplain;
+    }
+
+    public void setProductExplain(String productExplain) {
+        this.productExplain = productExplain == null ? null : productExplain.trim();
+    }
+
+    public String getReserveNotice() {
+        return reserveNotice;
+    }
+
+    public void setReserveNotice(String reserveNotice) {
+        this.reserveNotice = reserveNotice == null ? null : reserveNotice.trim();
+    }
+
+    public String getCancellationPolicy() {
+        return cancellationPolicy;
+    }
+
+    public void setCancellationPolicy(String cancellationPolicy) {
+        this.cancellationPolicy = cancellationPolicy == null ? null : cancellationPolicy.trim();
+    }
+
+    public String getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(String network) {
+        this.network = network == null ? null : network.trim();
+    }
+
+    public Short getHotspot() {
+        return hotspot;
+    }
+
+    public void setHotspot(Short hotspot) {
+        this.hotspot = hotspot;
+    }
+
+    public Short getCardSize() {
+        return cardSize;
+    }
+
+    public void setCardSize(Short cardSize) {
+        this.cardSize = cardSize;
+    }
+
+    public Short getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Short isDelete) {
+        this.isDelete = isDelete;
+    }
+}

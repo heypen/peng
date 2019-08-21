@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phonecard.dao.CardInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.phonecard.bean.CardInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_uuid" property="goodsUuid" jdbcType="VARCHAR" />
+    <result column="destination" property="destination" jdbcType="INTEGER" />
+    <result column="supplier" property="supplier" jdbcType="VARCHAR" />
+    <result column="self_city" property="selfCity" jdbcType="VARCHAR" />
+    <result column="start_explain" property="startExplain" jdbcType="VARCHAR" />
+    <result column="cost_explain" property="costExplain" jdbcType="VARCHAR" />
+    <result column="product_explain" property="productExplain" jdbcType="VARCHAR" />
+    <result column="reserve_notice" property="reserveNotice" jdbcType="VARCHAR" />
+    <result column="cancellation_policy" property="cancellationPolicy" jdbcType="VARCHAR" />
+    <result column="network" property="network" jdbcType="VARCHAR" />
+    <result column="hotspot" property="hotspot" jdbcType="SMALLINT" />
+    <result column="card_size" property="cardSize" jdbcType="SMALLINT" />
+    <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_uuid, destination, supplier, self_city, start_explain, cost_explain, product_explain, 
+    reserve_notice, cancellation_policy, network, hotspot, card_size, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from card_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from card_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.phonecard.bean.CardInfo" >
+    insert into card_info (id, goods_uuid, destination, 
+      supplier, self_city, start_explain, 
+      cost_explain, product_explain, reserve_notice, 
+      cancellation_policy, network, hotspot, 
+      card_size, is_delete)
+    values (#{id,jdbcType=INTEGER}, #{goodsUuid,jdbcType=VARCHAR}, #{destination,jdbcType=INTEGER}, 
+      #{supplier,jdbcType=VARCHAR}, #{selfCity,jdbcType=VARCHAR}, #{startExplain,jdbcType=VARCHAR}, 
+      #{costExplain,jdbcType=VARCHAR}, #{productExplain,jdbcType=VARCHAR}, #{reserveNotice,jdbcType=VARCHAR}, 
+      #{cancellationPolicy,jdbcType=VARCHAR}, #{network,jdbcType=VARCHAR}, #{hotspot,jdbcType=SMALLINT}, 
+      #{cardSize,jdbcType=SMALLINT}, #{isDelete,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.phonecard.bean.CardInfo" >
+    insert into card_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsUuid != null" >
+        goods_uuid,
+      </if>
+      <if test="destination != null" >
+        destination,
+      </if>
+      <if test="supplier != null" >
+        supplier,
+      </if>
+      <if test="selfCity != null" >
+        self_city,
+      </if>
+      <if test="startExplain != null" >
+        start_explain,
+      </if>
+      <if test="costExplain != null" >
+        cost_explain,
+      </if>
+      <if test="productExplain != null" >
+        product_explain,
+      </if>
+      <if test="reserveNotice != null" >
+        reserve_notice,
+      </if>
+      <if test="cancellationPolicy != null" >
+        cancellation_policy,
+      </if>
+      <if test="network != null" >
+        network,
+      </if>
+      <if test="hotspot != null" >
+        hotspot,
+      </if>
+      <if test="cardSize != null" >
+        card_size,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsUuid != null" >
+        #{goodsUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="destination != null" >
+        #{destination,jdbcType=INTEGER},
+      </if>
+      <if test="supplier != null" >
+        #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="selfCity != null" >
+        #{selfCity,jdbcType=VARCHAR},
+      </if>
+      <if test="startExplain != null" >
+        #{startExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="costExplain != null" >
+        #{costExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="productExplain != null" >
+        #{productExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveNotice != null" >
+        #{reserveNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="cancellationPolicy != null" >
+        #{cancellationPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="network != null" >
+        #{network,jdbcType=VARCHAR},
+      </if>
+      <if test="hotspot != null" >
+        #{hotspot,jdbcType=SMALLINT},
+      </if>
+      <if test="cardSize != null" >
+        #{cardSize,jdbcType=SMALLINT},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phonecard.bean.CardInfo" >
+    update card_info
+    <set >
+      <if test="goodsUuid != null" >
+        goods_uuid = #{goodsUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="destination != null" >
+        destination = #{destination,jdbcType=INTEGER},
+      </if>
+      <if test="supplier != null" >
+        supplier = #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="selfCity != null" >
+        self_city = #{selfCity,jdbcType=VARCHAR},
+      </if>
+      <if test="startExplain != null" >
+        start_explain = #{startExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="costExplain != null" >
+        cost_explain = #{costExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="productExplain != null" >
+        product_explain = #{productExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveNotice != null" >
+        reserve_notice = #{reserveNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="cancellationPolicy != null" >
+        cancellation_policy = #{cancellationPolicy,jdbcType=VARCHAR},
+      </if>
+      <if test="network != null" >
+        network = #{network,jdbcType=VARCHAR},
+      </if>
+      <if test="hotspot != null" >
+        hotspot = #{hotspot,jdbcType=SMALLINT},
+      </if>
+      <if test="cardSize != null" >
+        card_size = #{cardSize,jdbcType=SMALLINT},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phonecard.bean.CardInfo" >
+    update card_info
+    set goods_uuid = #{goodsUuid,jdbcType=VARCHAR},
+      destination = #{destination,jdbcType=INTEGER},
+      supplier = #{supplier,jdbcType=VARCHAR},
+      self_city = #{selfCity,jdbcType=VARCHAR},
+      start_explain = #{startExplain,jdbcType=VARCHAR},
+      cost_explain = #{costExplain,jdbcType=VARCHAR},
+      product_explain = #{productExplain,jdbcType=VARCHAR},
+      reserve_notice = #{reserveNotice,jdbcType=VARCHAR},
+      cancellation_policy = #{cancellationPolicy,jdbcType=VARCHAR},
+      network = #{network,jdbcType=VARCHAR},
+      hotspot = #{hotspot,jdbcType=SMALLINT},
+      card_size = #{cardSize,jdbcType=SMALLINT},
+      is_delete = #{isDelete,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

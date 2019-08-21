@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phonecard.dao.ProductOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.phonecard.bean.ProductOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="one_open_id" property="oneOpenId" jdbcType="VARCHAR" />
+    <result column="order_price" property="orderPrice" jdbcType="DOUBLE" />
+    <result column="actual_price" property="actualPrice" jdbcType="DOUBLE" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="order_status_prefix" property="orderStatusPrefix" jdbcType="INTEGER" />
+    <result column="pay_record_uuid" property="payRecordUuid" jdbcType="VARCHAR" />
+    <result column="trade_successful_time" property="tradeSuccessfulTime" jdbcType="TIMESTAMP" />
+    <result column="pay_type" property="payType" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="is_print" property="isPrint" jdbcType="INTEGER" />
+    <result column="is_affirm" property="isAffirm" jdbcType="INTEGER" />
+    <result column="today_on" property="todayOn" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uuid, create_time, is_delete, open_id, one_open_id, order_price, actual_price, 
+    order_status, order_status_prefix, pay_record_uuid, trade_successful_time, pay_type, 
+    remark, is_print, is_affirm, today_on
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.phonecard.bean.ProductOrder" >
+    insert into product_order (id, uuid, create_time, 
+      is_delete, open_id, one_open_id, 
+      order_price, actual_price, order_status, 
+      order_status_prefix, pay_record_uuid, trade_successful_time, 
+      pay_type, remark, is_print, 
+      is_affirm, today_on)
+    values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{oneOpenId,jdbcType=VARCHAR}, 
+      #{orderPrice,jdbcType=DOUBLE}, #{actualPrice,jdbcType=DOUBLE}, #{orderStatus,jdbcType=INTEGER}, 
+      #{orderStatusPrefix,jdbcType=INTEGER}, #{payRecordUuid,jdbcType=VARCHAR}, #{tradeSuccessfulTime,jdbcType=TIMESTAMP}, 
+      #{payType,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{isPrint,jdbcType=INTEGER}, 
+      #{isAffirm,jdbcType=INTEGER}, #{todayOn,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.phonecard.bean.ProductOrder" >
+    insert into product_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="oneOpenId != null" >
+        one_open_id,
+      </if>
+      <if test="orderPrice != null" >
+        order_price,
+      </if>
+      <if test="actualPrice != null" >
+        actual_price,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="orderStatusPrefix != null" >
+        order_status_prefix,
+      </if>
+      <if test="payRecordUuid != null" >
+        pay_record_uuid,
+      </if>
+      <if test="tradeSuccessfulTime != null" >
+        trade_successful_time,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isPrint != null" >
+        is_print,
+      </if>
+      <if test="isAffirm != null" >
+        is_affirm,
+      </if>
+      <if test="todayOn != null" >
+        today_on,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="oneOpenId != null" >
+        #{oneOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPrice != null" >
+        #{orderPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="actualPrice != null" >
+        #{actualPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatusPrefix != null" >
+        #{orderStatusPrefix,jdbcType=INTEGER},
+      </if>
+      <if test="payRecordUuid != null" >
+        #{payRecordUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeSuccessfulTime != null" >
+        #{tradeSuccessfulTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrint != null" >
+        #{isPrint,jdbcType=INTEGER},
+      </if>
+      <if test="isAffirm != null" >
+        #{isAffirm,jdbcType=INTEGER},
+      </if>
+      <if test="todayOn != null" >
+        #{todayOn,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phonecard.bean.ProductOrder" >
+    update product_order
+    <set >
+      <if test="uuid != null" >
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="oneOpenId != null" >
+        one_open_id = #{oneOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPrice != null" >
+        order_price = #{orderPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="actualPrice != null" >
+        actual_price = #{actualPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatusPrefix != null" >
+        order_status_prefix = #{orderStatusPrefix,jdbcType=INTEGER},
+      </if>
+      <if test="payRecordUuid != null" >
+        pay_record_uuid = #{payRecordUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeSuccessfulTime != null" >
+        trade_successful_time = #{tradeSuccessfulTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isPrint != null" >
+        is_print = #{isPrint,jdbcType=INTEGER},
+      </if>
+      <if test="isAffirm != null" >
+        is_affirm = #{isAffirm,jdbcType=INTEGER},
+      </if>
+      <if test="todayOn != null" >
+        today_on = #{todayOn,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phonecard.bean.ProductOrder" >
+    update product_order
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      open_id = #{openId,jdbcType=VARCHAR},
+      one_open_id = #{oneOpenId,jdbcType=VARCHAR},
+      order_price = #{orderPrice,jdbcType=DOUBLE},
+      actual_price = #{actualPrice,jdbcType=DOUBLE},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      order_status_prefix = #{orderStatusPrefix,jdbcType=INTEGER},
+      pay_record_uuid = #{payRecordUuid,jdbcType=VARCHAR},
+      trade_successful_time = #{tradeSuccessfulTime,jdbcType=TIMESTAMP},
+      pay_type = #{payType,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_print = #{isPrint,jdbcType=INTEGER},
+      is_affirm = #{isAffirm,jdbcType=INTEGER},
+      today_on = #{todayOn,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

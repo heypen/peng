@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phonecard.dao.LeaderMapper" >
+  <resultMap id="BaseResultMap" type="com.phonecard.bean.Leader" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="leader_wechat" property="leaderWechat" jdbcType="VARCHAR" />
+    <result column="leader_name" property="leaderName" jdbcType="VARCHAR" />
+    <result column="leader_phone" property="leaderPhone" jdbcType="CHAR" />
+    <result column="leader_ID" property="leaderId" jdbcType="VARCHAR" />
+    <result column="leader_company_name" property="leaderCompanyName" jdbcType="VARCHAR" />
+    <result column="leader_post" property="leaderPost" jdbcType="VARCHAR" />
+    <result column="leader_address" property="leaderAddress" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="explains" property="explains" jdbcType="VARCHAR" />
+    <result column="leader_balance" property="leaderBalance" jdbcType="DOUBLE" />
+    <result column="introduce_name" property="introduceName" jdbcType="VARCHAR" />
+    <result column="introduce_phone" property="introducePhone" jdbcType="CHAR" />
+    <result column="is_code" property="isCode" jdbcType="VARCHAR" />
+    <result column="in_type" property="inType" jdbcType="SMALLINT" />
+    <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, open_id, leader_wechat, leader_name, leader_phone, leader_ID, leader_company_name, 
+    leader_post, leader_address, company_id, explains, leader_balance, introduce_name, 
+    introduce_phone, is_code, in_type, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from leader
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from leader
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.phonecard.bean.Leader" >
+    insert into leader (id, open_id, leader_wechat, 
+      leader_name, leader_phone, leader_ID, 
+      leader_company_name, leader_post, leader_address, 
+      company_id, explains, leader_balance, 
+      introduce_name, introduce_phone, is_code, 
+      in_type, is_delete)
+    values (#{id,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{leaderWechat,jdbcType=VARCHAR}, 
+      #{leaderName,jdbcType=VARCHAR}, #{leaderPhone,jdbcType=CHAR}, #{leaderId,jdbcType=VARCHAR}, 
+      #{leaderCompanyName,jdbcType=VARCHAR}, #{leaderPost,jdbcType=VARCHAR}, #{leaderAddress,jdbcType=VARCHAR}, 
+      #{companyId,jdbcType=INTEGER}, #{explains,jdbcType=VARCHAR}, #{leaderBalance,jdbcType=DOUBLE}, 
+      #{introduceName,jdbcType=VARCHAR}, #{introducePhone,jdbcType=CHAR}, #{isCode,jdbcType=VARCHAR}, 
+      #{inType,jdbcType=SMALLINT}, #{isDelete,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.phonecard.bean.Leader" >
+    insert into leader
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="leaderWechat != null" >
+        leader_wechat,
+      </if>
+      <if test="leaderName != null" >
+        leader_name,
+      </if>
+      <if test="leaderPhone != null" >
+        leader_phone,
+      </if>
+      <if test="leaderId != null" >
+        leader_ID,
+      </if>
+      <if test="leaderCompanyName != null" >
+        leader_company_name,
+      </if>
+      <if test="leaderPost != null" >
+        leader_post,
+      </if>
+      <if test="leaderAddress != null" >
+        leader_address,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="explains != null" >
+        explains,
+      </if>
+      <if test="leaderBalance != null" >
+        leader_balance,
+      </if>
+      <if test="introduceName != null" >
+        introduce_name,
+      </if>
+      <if test="introducePhone != null" >
+        introduce_phone,
+      </if>
+      <if test="isCode != null" >
+        is_code,
+      </if>
+      <if test="inType != null" >
+        in_type,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderWechat != null" >
+        #{leaderWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderName != null" >
+        #{leaderName,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderPhone != null" >
+        #{leaderPhone,jdbcType=CHAR},
+      </if>
+      <if test="leaderId != null" >
+        #{leaderId,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderCompanyName != null" >
+        #{leaderCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderPost != null" >
+        #{leaderPost,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderAddress != null" >
+        #{leaderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="explains != null" >
+        #{explains,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderBalance != null" >
+        #{leaderBalance,jdbcType=DOUBLE},
+      </if>
+      <if test="introduceName != null" >
+        #{introduceName,jdbcType=VARCHAR},
+      </if>
+      <if test="introducePhone != null" >
+        #{introducePhone,jdbcType=CHAR},
+      </if>
+      <if test="isCode != null" >
+        #{isCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inType != null" >
+        #{inType,jdbcType=SMALLINT},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phonecard.bean.Leader" >
+    update leader
+    <set >
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderWechat != null" >
+        leader_wechat = #{leaderWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderName != null" >
+        leader_name = #{leaderName,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderPhone != null" >
+        leader_phone = #{leaderPhone,jdbcType=CHAR},
+      </if>
+      <if test="leaderId != null" >
+        leader_ID = #{leaderId,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderCompanyName != null" >
+        leader_company_name = #{leaderCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderPost != null" >
+        leader_post = #{leaderPost,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderAddress != null" >
+        leader_address = #{leaderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="explains != null" >
+        explains = #{explains,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderBalance != null" >
+        leader_balance = #{leaderBalance,jdbcType=DOUBLE},
+      </if>
+      <if test="introduceName != null" >
+        introduce_name = #{introduceName,jdbcType=VARCHAR},
+      </if>
+      <if test="introducePhone != null" >
+        introduce_phone = #{introducePhone,jdbcType=CHAR},
+      </if>
+      <if test="isCode != null" >
+        is_code = #{isCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inType != null" >
+        in_type = #{inType,jdbcType=SMALLINT},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phonecard.bean.Leader" >
+    update leader
+    set open_id = #{openId,jdbcType=VARCHAR},
+      leader_wechat = #{leaderWechat,jdbcType=VARCHAR},
+      leader_name = #{leaderName,jdbcType=VARCHAR},
+      leader_phone = #{leaderPhone,jdbcType=CHAR},
+      leader_ID = #{leaderId,jdbcType=VARCHAR},
+      leader_company_name = #{leaderCompanyName,jdbcType=VARCHAR},
+      leader_post = #{leaderPost,jdbcType=VARCHAR},
+      leader_address = #{leaderAddress,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER},
+      explains = #{explains,jdbcType=VARCHAR},
+      leader_balance = #{leaderBalance,jdbcType=DOUBLE},
+      introduce_name = #{introduceName,jdbcType=VARCHAR},
+      introduce_phone = #{introducePhone,jdbcType=CHAR},
+      is_code = #{isCode,jdbcType=VARCHAR},
+      in_type = #{inType,jdbcType=SMALLINT},
+      is_delete = #{isDelete,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
