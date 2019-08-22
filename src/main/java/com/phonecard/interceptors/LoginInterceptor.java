@@ -41,6 +41,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 			return true;
 		}
 
+		if (request.getRequestURI().contains("login")) {
+			return true;
+		}
+
 		if (token == null || "".equals(token)) {
 			printJson(response);
 			return false;

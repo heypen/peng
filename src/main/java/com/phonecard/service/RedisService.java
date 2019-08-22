@@ -3,22 +3,24 @@ package com.phonecard.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Service;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+
 /**
- * Created by Administrator on 2017/12/1.
+ * @author Administrator
  */
 @Service
 public class RedisService {
 
     
     @Autowired
-    private StringRedisTemplate stringRedisTemplate; 
+    private StringRedisTemplate stringRedisTemplate;
     @Autowired
-    private RedisTemplate redisTemplate; 
+    private RedisTemplate redisTemplate;
     
     /**
      * 写入缓存
@@ -140,7 +142,7 @@ public class RedisService {
      * @return
      */
     public Object hmGet(String key, Object hashKey){
-        HashOperations<String, Object, Object>  hash = redisTemplate.opsForHash();
+        HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
         return hash.get(key,hashKey);
     }
 
@@ -257,6 +259,8 @@ public class RedisService {
         ZSetOperations<String, Object> zset = redisTemplate.opsForZSet();
         return zset.rangeByScore(key, scoure, scoure1);
     }
+
+
 }
 
 
