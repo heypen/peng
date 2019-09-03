@@ -1,7 +1,11 @@
 package com.phonecard.dao;
 
 import com.phonecard.bean.OneSort;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+@Mapper
 public interface OneSortMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +18,9 @@ public interface OneSortMapper {
     int updateByPrimaryKeySelective(OneSort record);
 
     int updateByPrimaryKey(OneSort record);
+
+
+    List<OneSort> findOneSort();
+
+    int deleteOneSort(@Param("id") Integer id);
 }

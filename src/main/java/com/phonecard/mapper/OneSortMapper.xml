@@ -12,6 +12,30 @@
   <sql id="Base_Column_List" >
     id, one_sort_img, one_sort_name, is_index, sort, is_delete
   </sql>
+
+  <select id="findOneSort" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from one_sort
+    where is_delete = 0
+    order by sort
+  </select>
+
+  <update id="deleteOneSort" >
+    update one_sort
+    set
+      is_delete = 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+
+
+
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

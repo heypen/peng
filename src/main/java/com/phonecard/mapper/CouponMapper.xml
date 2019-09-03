@@ -10,10 +10,12 @@
     <result column="sub_money" property="subMoney" jdbcType="DOUBLE" />
     <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
     <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, uuid, coupon_name, coupon_num, full_money, sub_money, start_time, end_time, is_delete
+    id, uuid, coupon_name, coupon_num, full_money, sub_money, start_time, end_time, create_time, 
+    is_delete
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -28,12 +30,12 @@
   <insert id="insert" parameterType="com.phonecard.bean.Coupon" >
     insert into coupon (id, uuid, coupon_name, 
       coupon_num, full_money, sub_money, 
-      start_time, end_time, is_delete
-      )
+      start_time, end_time, create_time, 
+      is_delete)
     values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{couponName,jdbcType=VARCHAR}, 
       #{couponNum,jdbcType=INTEGER}, #{fullMoney,jdbcType=DOUBLE}, #{subMoney,jdbcType=DOUBLE}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=SMALLINT}
-      )
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=SMALLINT})
   </insert>
   <insert id="insertSelective" parameterType="com.phonecard.bean.Coupon" >
     insert into coupon
@@ -61,6 +63,9 @@
       </if>
       <if test="endTime != null" >
         end_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
       </if>
       <if test="isDelete != null" >
         is_delete,
@@ -91,6 +96,9 @@
       <if test="endTime != null" >
         #{endTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=SMALLINT},
       </if>
@@ -120,6 +128,9 @@
       <if test="endTime != null" >
         end_time = #{endTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=SMALLINT},
       </if>
@@ -135,6 +146,7 @@
       sub_money = #{subMoney,jdbcType=DOUBLE},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=SMALLINT}
     where id = #{id,jdbcType=INTEGER}
   </update>

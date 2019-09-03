@@ -11,6 +11,8 @@ public class TourList {
 
     private String tourImg;
 
+    private String explanation;
+
     private Date createTime;
 
     private Integer sort;
@@ -18,6 +20,14 @@ public class TourList {
     private Short isShow;
 
     private Short isDelete;
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
 
     public Integer getId() {
         return id;

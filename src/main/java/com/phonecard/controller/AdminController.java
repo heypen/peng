@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiParam;
  * @Description:
  */
 
-@Api(value = "管理员管理" , tags = {"管理员管理"})
+@Api(tags = {"管理员管理"})
 @RestController
 public class AdminController {
 

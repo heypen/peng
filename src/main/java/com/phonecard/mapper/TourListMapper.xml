@@ -6,13 +6,15 @@
     <result column="main_title" property="mainTitle" jdbcType="VARCHAR" />
     <result column="second_title" property="secondTitle" jdbcType="VARCHAR" />
     <result column="tour_img" property="tourImg" jdbcType="VARCHAR" />
+    <result column="explanation" property="explanation" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="is_show" property="isShow" jdbcType="SMALLINT" />
     <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, main_title, second_title, tour_img, create_time, sort, is_show, is_delete
+    id, main_title, second_title, tour_img, explanation, create_time, sort, is_show, 
+    is_delete
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,11 +28,13 @@
   </delete>
   <insert id="insert" parameterType="com.phonecard.bean.TourList" >
     insert into tour_list (id, main_title, second_title, 
-      tour_img, create_time, sort, 
-      is_show, is_delete)
+      tour_img, explanation, create_time, 
+      sort, is_show, is_delete
+      )
     values (#{id,jdbcType=INTEGER}, #{mainTitle,jdbcType=VARCHAR}, #{secondTitle,jdbcType=VARCHAR}, 
-      #{tourImg,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{sort,jdbcType=INTEGER}, 
-      #{isShow,jdbcType=SMALLINT}, #{isDelete,jdbcType=SMALLINT})
+      #{tourImg,jdbcType=VARCHAR}, #{explanation,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{sort,jdbcType=INTEGER}, #{isShow,jdbcType=SMALLINT}, #{isDelete,jdbcType=SMALLINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.phonecard.bean.TourList" >
     insert into tour_list
@@ -46,6 +50,9 @@
       </if>
       <if test="tourImg != null" >
         tour_img,
+      </if>
+      <if test="explanation != null" >
+        explanation,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -73,6 +80,9 @@
       <if test="tourImg != null" >
         #{tourImg,jdbcType=VARCHAR},
       </if>
+      <if test="explanation != null" >
+        #{explanation,jdbcType=VARCHAR},
+      </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -99,6 +109,9 @@
       <if test="tourImg != null" >
         tour_img = #{tourImg,jdbcType=VARCHAR},
       </if>
+      <if test="explanation != null" >
+        explanation = #{explanation,jdbcType=VARCHAR},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -119,6 +132,7 @@
     set main_title = #{mainTitle,jdbcType=VARCHAR},
       second_title = #{secondTitle,jdbcType=VARCHAR},
       tour_img = #{tourImg,jdbcType=VARCHAR},
+      explanation = #{explanation,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       sort = #{sort,jdbcType=INTEGER},
       is_show = #{isShow,jdbcType=SMALLINT},

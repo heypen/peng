@@ -19,6 +19,8 @@ public class Coupon {
 
     private Date endTime;
 
+    private Date createTime;
+
     private Short isDelete;
 
     public Integer getId() {
@@ -83,6 +85,14 @@ public class Coupon {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Short getIsDelete() {

@@ -25,9 +25,11 @@ public class CardInfo {
 
     private Short hotspot;
 
-    private Short cardSize;
+    private String cardSize;
 
     private Short isDelete;
+
+    private Short haveCall;
 
     public Integer getId() {
         return id;
@@ -125,12 +127,12 @@ public class CardInfo {
         this.hotspot = hotspot;
     }
 
-    public Short getCardSize() {
+    public String getCardSize() {
         return cardSize;
     }
 
-    public void setCardSize(Short cardSize) {
-        this.cardSize = cardSize;
+    public void setCardSize(String cardSize) {
+        this.cardSize = cardSize == null ? null : cardSize.trim();
     }
 
     public Short getIsDelete() {
@@ -139,5 +141,13 @@ public class CardInfo {
 
     public void setIsDelete(Short isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public Short getHaveCall() {
+        return haveCall;
+    }
+
+    public void setHaveCall(Short haveCall) {
+        this.haveCall = haveCall;
     }
 }

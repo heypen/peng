@@ -14,12 +14,13 @@
     <result column="cancellation_policy" property="cancellationPolicy" jdbcType="VARCHAR" />
     <result column="network" property="network" jdbcType="VARCHAR" />
     <result column="hotspot" property="hotspot" jdbcType="SMALLINT" />
-    <result column="card_size" property="cardSize" jdbcType="SMALLINT" />
+    <result column="card_size" property="cardSize" jdbcType="VARCHAR" />
     <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
+    <result column="have_call" property="haveCall" jdbcType="SMALLINT" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, goods_uuid, destination, supplier, self_city, start_explain, cost_explain, product_explain, 
-    reserve_notice, cancellation_policy, network, hotspot, card_size, is_delete
+    reserve_notice, cancellation_policy, network, hotspot, card_size, is_delete, have_call
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -36,12 +37,14 @@
       supplier, self_city, start_explain, 
       cost_explain, product_explain, reserve_notice, 
       cancellation_policy, network, hotspot, 
-      card_size, is_delete)
+      card_size, is_delete, have_call
+      )
     values (#{id,jdbcType=INTEGER}, #{goodsUuid,jdbcType=VARCHAR}, #{destination,jdbcType=INTEGER}, 
       #{supplier,jdbcType=VARCHAR}, #{selfCity,jdbcType=VARCHAR}, #{startExplain,jdbcType=VARCHAR}, 
       #{costExplain,jdbcType=VARCHAR}, #{productExplain,jdbcType=VARCHAR}, #{reserveNotice,jdbcType=VARCHAR}, 
       #{cancellationPolicy,jdbcType=VARCHAR}, #{network,jdbcType=VARCHAR}, #{hotspot,jdbcType=SMALLINT}, 
-      #{cardSize,jdbcType=SMALLINT}, #{isDelete,jdbcType=SMALLINT})
+      #{cardSize,jdbcType=VARCHAR}, #{isDelete,jdbcType=SMALLINT}, #{haveCall,jdbcType=SMALLINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.phonecard.bean.CardInfo" >
     insert into card_info
@@ -88,6 +91,9 @@
       <if test="isDelete != null" >
         is_delete,
       </if>
+      <if test="haveCall != null" >
+        have_call,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -127,10 +133,13 @@
         #{hotspot,jdbcType=SMALLINT},
       </if>
       <if test="cardSize != null" >
-        #{cardSize,jdbcType=SMALLINT},
+        #{cardSize,jdbcType=VARCHAR},
       </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=SMALLINT},
+      </if>
+      <if test="haveCall != null" >
+        #{haveCall,jdbcType=SMALLINT},
       </if>
     </trim>
   </insert>
@@ -171,10 +180,13 @@
         hotspot = #{hotspot,jdbcType=SMALLINT},
       </if>
       <if test="cardSize != null" >
-        card_size = #{cardSize,jdbcType=SMALLINT},
+        card_size = #{cardSize,jdbcType=VARCHAR},
       </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+      <if test="haveCall != null" >
+        have_call = #{haveCall,jdbcType=SMALLINT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -192,8 +204,9 @@
       cancellation_policy = #{cancellationPolicy,jdbcType=VARCHAR},
       network = #{network,jdbcType=VARCHAR},
       hotspot = #{hotspot,jdbcType=SMALLINT},
-      card_size = #{cardSize,jdbcType=SMALLINT},
-      is_delete = #{isDelete,jdbcType=SMALLINT}
+      card_size = #{cardSize,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=SMALLINT},
+      have_call = #{haveCall,jdbcType=SMALLINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
