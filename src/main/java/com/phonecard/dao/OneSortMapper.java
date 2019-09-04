@@ -19,8 +19,6 @@ public interface OneSortMapper {
 
     int updateByPrimaryKey(OneSort record);
 
-
     List<OneSort> findOneSort();
 
-    int deleteOneSort(@Param("id") Integer id);
 }

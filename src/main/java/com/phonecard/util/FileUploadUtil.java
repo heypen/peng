@@ -1,15 +1,15 @@
 package com.phonecard.util;
 
-import java.io.File;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.web.multipart.MultipartFile;
 
 import com.phonecard.config.PropertiesConfig;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.util.regex.Pattern;
 
 /**
- * @Auther: mirror_huang
+ * @Author: mirror_huang
  * @Date: 2018/8/16 22:38
  * @QQ: 1755496180
  * @Description:
@@ -22,7 +22,7 @@ public class FileUploadUtil {
         String path = "";
         if (!file.isEmpty()) {
             //生成uuid
-            String uuid = UUIDGenerator.generate();
+            String uuid = KeyGenerateUtil.uuidGenerate();
             //上传类型
             String contentType = file.getContentType();
             //上传后缀
@@ -58,17 +58,25 @@ public class FileUploadUtil {
     public static boolean fileUpload(MultipartFile file, String fullName) throws Exception {
         //获取路径
         String pathRoot = PropertiesConfig.filePath;
-        System.err.println("pathRoot"+pathRoot);
         File target = new File(pathRoot + fullName);
-        
         if (!target.getParentFile().exists()) {
             //判断文件父目录是否存在
             target.getParentFile().mkdirs();
         }
-        System.err.println("4");
         file.transferTo(target);
-        System.err.println("6");
         return true;
+    }
+
+    public static Short getFileType(String ext){
+        String reg = "(mp4|flv|avi|rm|rmvb|wmv|mov|swf|mpeg|mpg)";
+
+        Pattern p = Pattern.compile(reg);
+        boolean boo = p.matcher(ext).find();
+        if(boo){
+            return 1;
+        }else {
+            return 2;
+        }
     }
 }
 

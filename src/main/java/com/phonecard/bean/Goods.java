@@ -31,7 +31,13 @@ public class Goods {
 
     private String details;
 
+    private Short isHot;
+
+    private Short isNew;
+
     private Short isDelete;
+
+    private Double deposit;
 
     private String introduction;
 
@@ -147,12 +153,36 @@ public class Goods {
         this.details = details == null ? null : details.trim();
     }
 
+    public Short getIsHot() {
+        return isHot;
+    }
+
+    public void setIsHot(Short isHot) {
+        this.isHot = isHot;
+    }
+
+    public Short getIsNew() {
+        return isNew;
+    }
+
+    public void setIsNew(Short isNew) {
+        this.isNew = isNew;
+    }
+
     public Short getIsDelete() {
         return isDelete;
     }
 
     public void setIsDelete(Short isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public Double getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(Double deposit) {
+        this.deposit = deposit;
     }
 
     public String getIntroduction() {

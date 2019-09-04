@@ -1,9 +1,5 @@
 package com.phonecard.util;
 
-import java.io.IOException;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import com.qiniu.common.QiniuException;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
@@ -11,104 +7,53 @@ import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.net.URLEncoder;
 
 /**
- * 上传七牛云
  * @author Administrator
- *
  */
 
+@Slf4j
 public class QiniuyunUtils {
-	
-	// 设置好账号的ACCESS_KEY和SECRET_KEY
-	String ACCESS_KEY = "9AxsR2vSxFW_SmrvS95XcM9vfxM-dTvd6IbVHvUH";
-	String SECRET_KEY = "Tugk2f86XZ1CCuZzEFFWuyiV71PyMlmG84j4Rkob";
-	// 要上传的空间--
-	String bucketname = "file";
 
-	// 密钥配置
-	Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
-	// 创建上传对象
-	Configuration c = new Configuration(Zone.zone0());
-	UploadManager uploadManager = new UploadManager(c);
+    private static String ACCESS_KEY = "-OLnW71ijZk1nXJ-X4pYD0_0HPkGjf-lsY6EsP93";
+    private static String SECRET_KEY = "7zx88N46-MgAYCJtbnITZ2JBiXM_w1Ybc5sYZJnJ";
+    private static String BUCKET_NAME = "file";
+    public static String DOMAIN_OF_BUCKET = "http://file.houtianfu.com/";
 
-	// 简单上传，使用默认策略，只需要设置上传的空间名就可以了
-	public String getUpToken() {
-		// return auth.uploadToken(bucketname, null, 7200, null);
-		return auth.uploadToken(bucketname, null, 7200, null, true);
-		// return uptoken;
-	}
+    /**
+     * 根据文件相对路径获取绝对路径
+     *
+     * @param fileRelativePath
+     * @return
+     * @throws Exception
+     */
+    public static String fileLocation(String fileRelativePath) throws Exception {
+        String encodedFileName = URLEncoder.encode(fileRelativePath, "utf-8");
+        String absolutePath = String.format("%s/%s", DOMAIN_OF_BUCKET, encodedFileName);
+        return absolutePath;
+    }
 
-	public Boolean upload(byte[] file, String key) throws IOException {
-		Boolean flag = false;
-		try {
-			// 调用put方法上传
-			Response res = uploadManager.put(file, key, getUpToken());
-			// 打印返回的信息
-			System.out
-					.println("返回的Response res = uploadManager.put(file, key, getUpToken());的值为：=="
-							+ res.bodyString());
-			if (res != null) {
-				flag = true;
-			}
-		} catch (QiniuException e) {
-			Response r = e.response;
-			// 请求失败时打印的异常的信息
-			System.out.println(r.toString());
-			try {
-				// 响应的文本信息
-				System.out.println(r.bodyString());
-			} catch (QiniuException e1) {
-				// ignore
-			}
-		}
-		return flag;
-	}
 
-	/**
-	 * 上传文件
-	 * 
-	 * @param file
-	 *            byte
-	 * @param key
-	 *            文件名
-	 * @throws Exception
-	 */
-	public Boolean uploadFile(byte[] file, String key) throws Exception {
-		Boolean flag = new QiniuyunUtils().upload(file, key);
-		return flag;
-	}
-
-	/**
-	 * 删除文件
-	 * 
-	 * @param key
-	 *            要删除文件名
-	 * @return
-	 */
-	public Boolean deleteFile(String key) {
-		// 构造一个带指定Zone对象的配置类
-		Configuration cfg = new Configuration(Zone.zone0());
-		// ...其他参数参考类注释
-		BucketManager bucketManager = new BucketManager(auth, cfg);
-		try {
-			bucketManager.delete(bucketname, key);
-			return true;
-		} catch (QiniuException ex) {
-			// 如果遇到异常，说明删除失败
-			System.err.println(ex.code());
-			System.err.println(ex.response.toString());
-			return false;
-		}
-	}
-	// 创建上传对象
-    public Boolean upload(MultipartFile multipartFile, String key) throws Exception {
+    // 创建上传对象
+    public static Boolean upload(MultipartFile multipartFile, String key) throws Exception {
         //上传配置
+        /**
+         * 华东	Zone.zone0()
+         * 华北	Zone.zone1()
+         * 华南	Zone.zone2()
+         * 北美	Zone.zoneNa0()
+         */
         Configuration c = new Configuration(Zone.zone0());
         // 创建上传对象
         UploadManager uploadManager = new UploadManager(c);
+        // 密钥配置
+        Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
         // 简单上传，使用默认策略，只需要设置上传的空间名就可以了
-        String upToken = auth.uploadToken(bucketname, null, 7200, null, true);
+        String upToken = auth.uploadToken(BUCKET_NAME, null, 7200, null, true);
         Boolean flag = false;
         try {
             byte[] file = multipartFile.getBytes();
@@ -119,7 +64,31 @@ public class QiniuyunUtils {
             }
         } catch (QiniuException e) {
             Response r = e.response;
+            log.error("【七牛云】上传失败，e={]",r.error);
         }
         return flag;
-   }
+    }
+
+    /**
+     * 删除文件
+     *
+     * @param key 要删除文件名
+     * @return
+     */
+    public static Boolean deleteFile(String key) {
+        Configuration configuration = new Configuration(Zone.zone0());
+        Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
+        //...其他参数参考类注释
+        BucketManager bucketManager = new BucketManager(auth, configuration);
+        try {
+            bucketManager.delete(BUCKET_NAME, key);
+            return true;
+        } catch (QiniuException ex) {
+            return false;
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        System.out.println(fileLocation("d8381cb1e46441ff83d3cb43c733f752.jpg"));
+    }
 }

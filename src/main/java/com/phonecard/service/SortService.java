@@ -43,17 +43,4 @@ public class SortService {
         return r;
     }
 
-
-    public JsonResult deleteOneSort(Integer id) {
-        JsonResult r = new JsonResult();
-        int row = oneSortMapper.deleteOneSort(id);
-        if (row > 0){
-            r.setMsg("删除成功");
-            r.setResult(StatusCode.SUCCESS);
-        }else {
-            r.setMsg("删除失败");
-            r.setResult(StatusCode.FAIL);
-        }
-        return r;
-    }
 }

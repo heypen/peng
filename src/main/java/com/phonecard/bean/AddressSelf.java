@@ -11,6 +11,8 @@ public class AddressSelf {
 
     private String businessHours;
 
+    private String addressCode;
+
     private Integer sort;
 
     private Short isDelete;
@@ -53,6 +55,14 @@ public class AddressSelf {
 
     public void setBusinessHours(String businessHours) {
         this.businessHours = businessHours == null ? null : businessHours.trim();
+    }
+
+    public String getAddressCode() {
+        return addressCode;
+    }
+
+    public void setAddressCode(String addressCode) {
+        this.addressCode = addressCode == null ? null : addressCode.trim();
     }
 
     public Integer getSort() {

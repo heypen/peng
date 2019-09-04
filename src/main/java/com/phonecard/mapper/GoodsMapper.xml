@@ -16,14 +16,18 @@
     <result column="goods_type" property="goodsType" jdbcType="SMALLINT" />
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="details" property="details" jdbcType="VARCHAR" />
+    <result column="is_hot" property="isHot" jdbcType="SMALLINT" />
+    <result column="is_new" property="isNew" jdbcType="SMALLINT" />
     <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
+    <result column="deposit" property="deposit" jdbcType="DOUBLE" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.phonecard.bean.Goods" extends="BaseResultMap" >
     <result column="introduction" property="introduction" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, uuid, goods_name, one_sort_id, show_count, thumb, pictures, goods_create_time, 
-    goods_update_time, is_shelf, pick_up, goods_type, sort, details, is_delete
+    goods_update_time, is_shelf, pick_up, goods_type, sort, details, is_hot, is_new, 
+    is_delete, deposit
   </sql>
   <sql id="Blob_Column_List" >
     introduction
@@ -45,13 +49,15 @@
       one_sort_id, show_count, thumb, 
       pictures, goods_create_time, goods_update_time, 
       is_shelf, pick_up, goods_type, 
-      sort, details, is_delete, 
+      sort, details, is_hot, 
+      is_new, is_delete, deposit, 
       introduction)
     values (#{id,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, 
       #{oneSortId,jdbcType=INTEGER}, #{showCount,jdbcType=INTEGER}, #{thumb,jdbcType=VARCHAR}, 
       #{pictures,jdbcType=VARCHAR}, #{goodsCreateTime,jdbcType=TIMESTAMP}, #{goodsUpdateTime,jdbcType=TIMESTAMP}, 
       #{isShelf,jdbcType=SMALLINT}, #{pickUp,jdbcType=SMALLINT}, #{goodsType,jdbcType=SMALLINT}, 
-      #{sort,jdbcType=INTEGER}, #{details,jdbcType=VARCHAR}, #{isDelete,jdbcType=SMALLINT}, 
+      #{sort,jdbcType=INTEGER}, #{details,jdbcType=VARCHAR}, #{isHot,jdbcType=SMALLINT}, 
+      #{isNew,jdbcType=SMALLINT}, #{isDelete,jdbcType=SMALLINT}, #{deposit,jdbcType=DOUBLE}, 
       #{introduction,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.phonecard.bean.Goods" >
@@ -99,8 +105,17 @@
       <if test="details != null" >
         details,
       </if>
+      <if test="isHot != null" >
+        is_hot,
+      </if>
+      <if test="isNew != null" >
+        is_new,
+      </if>
       <if test="isDelete != null" >
         is_delete,
+      </if>
+      <if test="deposit != null" >
+        deposit,
       </if>
       <if test="introduction != null" >
         introduction,
@@ -149,8 +164,17 @@
       <if test="details != null" >
         #{details,jdbcType=VARCHAR},
       </if>
+      <if test="isHot != null" >
+        #{isHot,jdbcType=SMALLINT},
+      </if>
+      <if test="isNew != null" >
+        #{isNew,jdbcType=SMALLINT},
+      </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=SMALLINT},
+      </if>
+      <if test="deposit != null" >
+        #{deposit,jdbcType=DOUBLE},
       </if>
       <if test="introduction != null" >
         #{introduction,jdbcType=LONGVARCHAR},
@@ -199,8 +223,17 @@
       <if test="details != null" >
         details = #{details,jdbcType=VARCHAR},
       </if>
+      <if test="isHot != null" >
+        is_hot = #{isHot,jdbcType=SMALLINT},
+      </if>
+      <if test="isNew != null" >
+        is_new = #{isNew,jdbcType=SMALLINT},
+      </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+      <if test="deposit != null" >
+        deposit = #{deposit,jdbcType=DOUBLE},
       </if>
       <if test="introduction != null" >
         introduction = #{introduction,jdbcType=LONGVARCHAR},
@@ -223,7 +256,10 @@
       goods_type = #{goodsType,jdbcType=SMALLINT},
       sort = #{sort,jdbcType=INTEGER},
       details = #{details,jdbcType=VARCHAR},
+      is_hot = #{isHot,jdbcType=SMALLINT},
+      is_new = #{isNew,jdbcType=SMALLINT},
       is_delete = #{isDelete,jdbcType=SMALLINT},
+      deposit = #{deposit,jdbcType=DOUBLE},
       introduction = #{introduction,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -242,7 +278,10 @@
       goods_type = #{goodsType,jdbcType=SMALLINT},
       sort = #{sort,jdbcType=INTEGER},
       details = #{details,jdbcType=VARCHAR},
-      is_delete = #{isDelete,jdbcType=SMALLINT}
+      is_hot = #{isHot,jdbcType=SMALLINT},
+      is_new = #{isNew,jdbcType=SMALLINT},
+      is_delete = #{isDelete,jdbcType=SMALLINT},
+      deposit = #{deposit,jdbcType=DOUBLE}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

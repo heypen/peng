@@ -21,15 +21,6 @@
     order by sort
   </select>
 
-  <update id="deleteOneSort" >
-    update one_sort
-    set
-      is_delete = 1
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-
-
-
 
 
 

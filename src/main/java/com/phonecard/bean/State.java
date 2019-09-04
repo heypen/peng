@@ -7,9 +7,11 @@ public class State {
 
     private Short isHot;
 
-    private Short stateSort;
+    private String stateSort;
 
     private Short isDelete;
+
+    private Short isRecommend;
 
     public Integer getId() {
         return id;
@@ -35,12 +37,12 @@ public class State {
         this.isHot = isHot;
     }
 
-    public Short getStateSort() {
+    public String getStateSort() {
         return stateSort;
     }
 
-    public void setStateSort(Short stateSort) {
-        this.stateSort = stateSort;
+    public void setStateSort(String stateSort) {
+        this.stateSort = stateSort == null ? null : stateSort.trim();
     }
 
     public Short getIsDelete() {
@@ -49,5 +51,13 @@ public class State {
 
     public void setIsDelete(Short isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public Short getIsRecommend() {
+        return isRecommend;
+    }
+
+    public void setIsRecommend(Short isRecommend) {
+        this.isRecommend = isRecommend;
     }
 }

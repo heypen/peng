@@ -5,11 +5,12 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="state_name" property="stateName" jdbcType="VARCHAR" />
     <result column="is_hot" property="isHot" jdbcType="SMALLINT" />
-    <result column="state_sort" property="stateSort" jdbcType="SMALLINT" />
+    <result column="state_sort" property="stateSort" jdbcType="VARCHAR" />
     <result column="is_delete" property="isDelete" jdbcType="SMALLINT" />
+    <result column="is_recommend" property="isRecommend" jdbcType="SMALLINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, state_name, is_hot, state_sort, is_delete
+    id, state_name, is_hot, state_sort, is_delete, is_recommend
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -23,9 +24,11 @@
   </delete>
   <insert id="insert" parameterType="com.phonecard.bean.State" >
     insert into state (id, state_name, is_hot, 
-      state_sort, is_delete)
+      state_sort, is_delete, is_recommend
+      )
     values (#{id,jdbcType=INTEGER}, #{stateName,jdbcType=VARCHAR}, #{isHot,jdbcType=SMALLINT}, 
-      #{stateSort,jdbcType=SMALLINT}, #{isDelete,jdbcType=SMALLINT})
+      #{stateSort,jdbcType=VARCHAR}, #{isDelete,jdbcType=SMALLINT}, #{isRecommend,jdbcType=SMALLINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.phonecard.bean.State" >
     insert into state
@@ -45,6 +48,9 @@
       <if test="isDelete != null" >
         is_delete,
       </if>
+      <if test="isRecommend != null" >
+        is_recommend,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -57,10 +63,13 @@
         #{isHot,jdbcType=SMALLINT},
       </if>
       <if test="stateSort != null" >
-        #{stateSort,jdbcType=SMALLINT},
+        #{stateSort,jdbcType=VARCHAR},
       </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=SMALLINT},
+      </if>
+      <if test="isRecommend != null" >
+        #{isRecommend,jdbcType=SMALLINT},
       </if>
     </trim>
   </insert>
@@ -74,10 +83,13 @@
         is_hot = #{isHot,jdbcType=SMALLINT},
       </if>
       <if test="stateSort != null" >
-        state_sort = #{stateSort,jdbcType=SMALLINT},
+        state_sort = #{stateSort,jdbcType=VARCHAR},
       </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+      <if test="isRecommend != null" >
+        is_recommend = #{isRecommend,jdbcType=SMALLINT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -86,8 +98,9 @@
     update state
     set state_name = #{stateName,jdbcType=VARCHAR},
       is_hot = #{isHot,jdbcType=SMALLINT},
-      state_sort = #{stateSort,jdbcType=SMALLINT},
-      is_delete = #{isDelete,jdbcType=SMALLINT}
+      state_sort = #{stateSort,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=SMALLINT},
+      is_recommend = #{isRecommend,jdbcType=SMALLINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

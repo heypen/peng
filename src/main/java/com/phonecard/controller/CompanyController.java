@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Auther: Mr.Yang
- * @Date: 2019/9/3 0003 16:25
+ * @Date: 2019/9/4 0004 15:34
  * @Description:
  */
-@Api(tags = {"视频上传"})
+@Api(tags = {"公司管理"})
 @RestController
-public class VideoController {
+public class CompanyController {
 }

@@ -39,16 +39,9 @@ public class SortController {
     }
 
     @ApiOperation(value = "更新一级分类信息" , notes = "更新一级分类信息")
-    @RequestMapping(value = "findProgram" , method = RequestMethod.POST)
+    @RequestMapping(value = "updateOneSort" , method = RequestMethod.POST)
     public JsonResult updateOneSort(@ApiParam(value = "一级分类信息") @RequestBody OneSort oneSort) {
         JsonResult r = sortService.updateOneSort(oneSort);
-        return r;
-    }
-
-    @ApiOperation(value = "删除一级分类信息" , notes = "删除一级分类信息")
-    @RequestMapping(value = "findProgram" , method = RequestMethod.POST)
-    public JsonResult deleteOneSort(@ApiParam(value = "一级分类id") @RequestParam("id") Integer id) {
-        JsonResult r = sortService.deleteOneSort(id);
         return r;
     }
 

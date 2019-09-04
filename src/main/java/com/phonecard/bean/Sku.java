@@ -21,6 +21,8 @@ public class Sku {
 
     private Short isDelete;
 
+    private Short pickUp;
+
     public Integer getId() {
         return id;
     }
@@ -99,5 +101,13 @@ public class Sku {
 
     public void setIsDelete(Short isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public Short getPickUp() {
+        return pickUp;
+    }
+
+    public void setPickUp(Short pickUp) {
+        this.pickUp = pickUp;
     }
 }
