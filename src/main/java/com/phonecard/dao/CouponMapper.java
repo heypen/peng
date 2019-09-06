@@ -1,6 +1,10 @@
 package com.phonecard.dao;
 
 import com.phonecard.bean.Coupon;
+import com.phonecard.util.PageObject;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CouponMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +18,8 @@ public interface CouponMapper {
     int updateByPrimaryKeySelective(Coupon record);
 
     int updateByPrimaryKey(Coupon record);
+
+    int getCountCouponSum();
+
+    List<Coupon> getCouponList(@Param("pageObject") PageObject pageObject,@Param("couponName") String couponName);
 }

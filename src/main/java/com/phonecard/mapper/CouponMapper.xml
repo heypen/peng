@@ -23,6 +23,17 @@
     from coupon
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getCountCouponSum" resultType="java.lang.Integer">
+    select COUNT(1) from coupon where is_delete = 0
+  </select>
+  <select id="getCouponList" resultType="map">
+    select * from coupon
+    where is_delete = 0
+    <if test="couponName != null">
+      and coupon_name = #{couponName}
+    </if>
+    limit #{pageObject.startIndex},#{pageObject.pageSize}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from coupon
     where id = #{id,jdbcType=INTEGER}
