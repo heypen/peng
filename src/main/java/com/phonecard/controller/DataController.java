@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * @Auther: Peng
  * @Date:  2019-09-10
- * @Description: 主页统计。
+ * @Description: 主页统计
  */
 @Api(value = "统计controller", tags = {"数据统计"})
 @RestController
