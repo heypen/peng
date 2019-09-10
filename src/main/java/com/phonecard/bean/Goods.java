@@ -1,5 +1,6 @@
 package com.phonecard.bean;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Goods {
@@ -40,6 +41,8 @@ public class Goods {
     private Double deposit;
 
     private String introduction;
+
+    private BigDecimal totalPrice;
 
     public Integer getId() {
         return id;
@@ -191,5 +194,13 @@ public class Goods {
 
     public void setIntroduction(String introduction) {
         this.introduction = introduction == null ? null : introduction.trim();
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
